@@ -1,0 +1,1 @@
+/home/flask/.local/share/dwm/autostart.sh
