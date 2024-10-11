@@ -16,7 +16,7 @@
 static const unsigned int borderpx = 0; /* border pixel of windows */
 static const int corner_radius = 10;
 #else
-static const unsigned int borderpx = 1; /* border pixel of windows */
+static const unsigned int borderpx = 0; /* border pixel of windows */
 #endif // ROUNDED_CORNERS_PATCH
 #if BAR_BORDER_PATCH
 /* This allows the bar border size to be explicitly set separately from
@@ -205,9 +205,9 @@ static void (*bartabmonfns[])(Monitor *) = {NULL /* , customlayoutfn */};
 #if BAR_PANGO_PATCH
 static const char font[] = "monospace 10";
 #else
-static const char *fonts[] = {"Iosevka:size=11"};
+static const char *fonts[] = {"Iosevka Nerd Font:size=11"};
 #endif // BAR_PANGO_PATCH
-static const char dmenufont[] = "Iosevka:size=11";
+static const char dmenufont[] = "Iosevka Nerd Font:size=11";
 
 static char c000000[] = "#000000"; // placeholder value
 
@@ -1074,17 +1074,23 @@ static const Key keys[] = {
     {MODKEY | ControlMask | ShiftMask, XK_r, aspectresize, {.i = -24}},
 #endif // ASPECTRESIZE_PATCH
 #if MOVERESIZE_PATCH
-    {MODKEY | Mod4Mask, XK_Down, moveresize, {.v = "0x 25y 0w 0h"}},
-    {MODKEY | Mod4Mask, XK_Up, moveresize, {.v = "0x -25y 0w 0h"}},
-    {MODKEY | Mod4Mask, XK_Right, moveresize, {.v = "25x 0y 0w 0h"}},
-    {MODKEY | Mod4Mask, XK_Left, moveresize, {.v = "-25x 0y 0w 0h"}},
-    {MODKEY | Mod4Mask | ShiftMask, XK_Down, moveresize, {.v = "0x 0y 0w 25h"}},
-    {MODKEY | Mod4Mask | ShiftMask, XK_Up, moveresize, {.v = "0x 0y 0w -25h"}},
-    {MODKEY | Mod4Mask | ShiftMask,
+    {MODKEY | ControlMask, XK_Up, moveresize, {.v = "0x -25y 0w 0h"}},
+    {MODKEY | ControlMask, XK_Down, moveresize, {.v = "0x 25y 0w 0h"}},
+    {MODKEY | ControlMask, XK_Right, moveresize, {.v = "25x 0y 0w 0h"}},
+    {MODKEY | ControlMask, XK_Left, moveresize, {.v = "-25x 0y 0w 0h"}},
+    {MODKEY | ControlMask | ShiftMask,
+     XK_Down,
+     moveresize,
+     {.v = "0x 0y 0w 25h"}},
+    {MODKEY | ControlMask | ShiftMask,
+     XK_Up,
+     moveresize,
+     {.v = "0x 0y 0w -25h"}},
+    {MODKEY | ControlMask | ShiftMask,
      XK_Right,
      moveresize,
      {.v = "0x 0y 25w 0h"}},
-    {MODKEY | Mod4Mask | ShiftMask,
+    {MODKEY | Mod1Mask | ShiftMask,
      XK_Left,
      moveresize,
      {.v = "0x 0y -25w 0h"}},
